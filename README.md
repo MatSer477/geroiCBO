@@ -390,7 +390,7 @@
             </article>
 
             <article class="hero-card">
-                <h3 class="hero-name">Sergey Kamennov</h3>
+                <h3 class="hero-name">Sergey Kamennov 8A класс</h3>
                 <div class="hero-rank">Saratov Region</div>
             </article>
 
