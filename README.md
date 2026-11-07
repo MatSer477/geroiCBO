@@ -6,58 +6,80 @@
 <title>Герои России — Саратовская область</title>
 <style>
     :root {
-        --primary-color: #003a70;
+        --primary-color: #0a2a52;
         --accent-color: #c8102e;
-        --bg-color: #f4f6f9;
+        --gold: #d9b45b;
         --card-bg: #ffffff;
         --text-color: #222222;
     }
+
+    * { box-sizing: border-box; }
 
     body {
         font-family: 'Arial', sans-serif;
         margin: 0;
         color: var(--text-color);
         line-height: 1.6;
-        background-color: var(--bg-color);
+        min-height: 100vh;
+        background-color: #0a1f3d;
         background-image:
-            linear-gradient(180deg, rgba(0,58,112,0.10) 0%, rgba(244,246,249,0) 380px),
-            repeating-linear-gradient(45deg, rgba(0,58,112,0.035) 0 2px, transparent 2px 22px);
+            radial-gradient(ellipse 60% 40% at 15% 0%, rgba(217,180,91,0.22), transparent 70%),
+            radial-gradient(ellipse 50% 35% at 90% 20%, rgba(200,16,46,0.18), transparent 70%),
+            radial-gradient(ellipse 70% 50% at 50% 100%, rgba(70,130,210,0.25), transparent 70%),
+            linear-gradient(160deg, #07172e 0%, #0f3260 50%, #123f78 100%);
         background-attachment: fixed;
+        position: relative;
     }
 
+    /* Сетка из точек поверх фона */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1.5px);
+        background-size: 28px 28px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    header, main, footer { position: relative; z-index: 1; }
+
     header {
-        background-color: var(--primary-color);
         color: white;
         text-align: center;
-        padding: 2rem 1rem;
-        position: relative;
+        padding: 3rem 1rem 2.5rem;
     }
 
     header::after {
         content: '';
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background-color: var(--accent-color);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(420px, 70%);
+        height: 4px;
+        background: linear-gradient(90deg, #ffffff 0 33.3%, #1c57a5 33.3% 66.6%, var(--accent-color) 66.6% 100%);
+        border-radius: 2px;
     }
 
-    h1 { margin: 0; font-size: 2.5rem; }
+    .star { width: 64px; height: 64px; margin-bottom: 0.75rem; filter: drop-shadow(0 0 12px rgba(217,180,91,0.6)); }
+
+    h1 { margin: 0; font-size: 2.5rem; text-shadow: 0 2px 12px rgba(0,0,0,0.4); }
 
     .subtitle { font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem; }
 
-    main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+    main { max-width: 1200px; margin: 0 auto; padding: 2.5rem 1rem; }
 
     .intro {
         text-align: center;
         max-width: 800px;
         margin: 0 auto 3rem;
         font-size: 1.1rem;
-        background: var(--card-bg);
+        background: rgba(255,255,255,0.96);
         padding: 2rem;
         border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-top: 4px solid var(--gold);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     }
 
     .heroes-grid {
@@ -70,21 +92,23 @@
         background: var(--card-bg);
         border-radius: 10px;
         padding: 1.5rem;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         border-left: 5px solid var(--accent-color);
     }
 
+    .hero-card.memory { border-left-color: #555; }
+
     .hero-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        box-shadow: 0 14px 34px rgba(0,0,0,0.35);
     }
 
     .hero-name { margin: 0 0 0.5rem; color: var(--primary-color); font-size: 1.4rem; }
 
     .hero-rank { color: #666; font-style: italic; margin-bottom: 1rem; }
 
-    .hero-desc { font-size: 0.95rem; }
+    .hero-desc { font-size: 0.95rem; margin: 0; }
 
     .badge {
         display: inline-block;
@@ -100,27 +124,33 @@
     .badge-memory { background-color: #444; }
 
     .program-section {
-        background: linear-gradient(135deg, var(--primary-color), #00509e);
+        background: linear-gradient(135deg, rgba(10,42,82,0.95), rgba(0,80,158,0.95));
         color: white;
         padding: 3rem 1rem;
         text-align: center;
         border-radius: 10px;
         margin-top: 3rem;
+        border: 1px solid rgba(217,180,91,0.6);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
-    .program-section h2 { margin-top: 0; }
+    .program-section h2 { margin-top: 0; color: var(--gold); }
 
     footer {
         text-align: center;
         padding: 2rem;
-        background-color: var(--primary-color);
+        background-color: rgba(5,15,32,0.85);
         color: #cccccc;
         margin-top: 3rem;
+        border-top: 3px solid var(--gold);
     }
 </style>
 </head>
 <body>
     <header>
+        <svg class="star" viewBox="0 0 100 100" aria-hidden="true">
+            <polygon points="50,5 61,38 96,38 68,58 79,92 50,71 21,92 32,58 4,38 39,38" fill="#d9b45b" stroke="#f3dc9a" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
         <h1>Герои России Саратовской области</h1>
         <div class="subtitle">Участники специальной военной операции, удостоенные звания Героя Российской Федерации</div>
     </header>
@@ -159,14 +189,14 @@
                 <span class="badge">Герой России</span>
             </article>
 
-            <article class="hero-card">
+            <article class="hero-card memory">
                 <h3 class="hero-name">Потапов Александр Игоревич</h3>
                 <div class="hero-rank">23.11.1989 — 30.08.2022, г. Шиханы</div>
                 <p class="hero-desc">Офицер (инструктор) группы 604-го центра специального назначения «Витязь». Звание присвоено посмертно; в Шиханах на Аллее Славы установлен его бюст.</p>
                 <span class="badge badge-memory">Посмертно</span>
             </article>
 
-            <article class="hero-card">
+            <article class="hero-card memory">
                 <h3 class="hero-name">Аксенов Александр Александрович</h3>
                 <div class="hero-rank">Подполковник, 24.06.1984 — 17.09.2022</div>
                 <p class="hero-desc">Родился в Саратове. Заместитель командира 18-й бригады армейской авиации по военно-политической работе, военный лётчик 1-го класса. Выпускник Сызранского высшего военного авиационного училища. В Саратове открыт мурал в его честь.</p>
@@ -180,7 +210,7 @@
                 <span class="badge">Герой России</span>
             </article>
 
-            <article class="hero-card">
+            <article class="hero-card memory">
                 <h3 class="hero-name">Назаров Сергей Сергеевич</h3>
                 <div class="hero-rank">06.03.1983 — 04.12.2023, г. Хвалынск</div>
                 <p class="hero-desc">Командир штурмовой роты 15-й отдельной мотострелковой бригады. Погиб в Красногоровке (Донецкая область). Звание присвоено указом № 240 от 8 апреля 2024 года посмертно.</p>
@@ -194,7 +224,57 @@
                 <span class="badge">Герой России</span>
             </article>
 
-            <article class="hero-card">
+            <article class="hero-card memory">
                 <h3 class="hero-name">Максюков Алексей Вячеславович</h3>
                 <div class="hero-rank">Ефрейтор, 31.12.1994 — 30.04.2024</div>
-                <p class="hero-desc">Родился в селе Кирово Краснокутского района. Стрелок десантно-штурмового отделения. Участвовал в боевых действиях в Сирии и Нагорном Карабахе, затем в СВО. Погиб при выполнении боевого
+                <p class="hero-desc">Родился в селе Кирово Краснокутского района. Стрелок десантно-штурмового отделения. Участвовал в боевых действиях в Сирии и Нагорном Карабахе, затем в СВО. Погиб при выполнении боевого задания; звание присвоено посмертно.</p>
+                <span class="badge badge-memory">Посмертно</span>
+            </article>
+
+            <article class="hero-card">
+                <h3 class="hero-name">Джумагалиев Мирлан Андреевич</h3>
+                <div class="hero-rank">Подполковник, уроженец пос. Нива Питерского района</div>
+                <p class="hero-desc">Выпускник Саратовской государственной юридической академии. Участник операции в Сирии, с февраля 2022 года — в СВО. Заместитель командира 30-й отдельной гвардейской мотострелковой бригады. Звание Героя присвоено в 2024 году.</p>
+                <span class="badge">Герой России</span>
+            </article>
+
+            <article class="hero-card">
+                <h3 class="hero-name">Филоненко Андрей Михайлович</h3>
+                <div class="hero-rank">Майор Росгвардии, позывной «Артист», уроженец Калининского района</div>
+                <p class="hero-desc">В СВО с февраля 2022 года. Звание присвоено за мужество при выполнении боевых задач и отражении нападения на приграничные районы Курской области. Награждён медалью «За отвагу» и орденами Мужества.</p>
+                <span class="badge">Герой России</span>
+            </article>
+
+            <article class="hero-card">
+                <h3 class="hero-name">Казаков Алексей</h3>
+                <div class="hero-rank">Гвардии капитан, уроженец Федоровского района</div>
+                <p class="hero-desc">Командир разведывательного батальона, в зоне СВО с первых дней. Награду вручил министр обороны Андрей Белоусов. Награждён орденом Мужества и двумя медалями «За отвагу».</p>
+                <span class="badge">Герой России</span>
+            </article>
+
+            <article class="hero-card">
+                <h3 class="hero-name">Кудряшов Виталий Вадимович</h3>
+                <div class="hero-rank">14.06.2002 — 27.03.2026, г. Балаково</div>
+                <p class="hero-desc">Позывной «Фанат». Вдвоём с напарником взял в плен семерых солдат противника и долгое время удерживал населённый пункт. Звание присвоено указом от 12 декабря 2025 года; Золотая Звезда вручена в госпитале.</p>
+                <span class="badge">Герой России</span>
+            </article>
+
+            <article class="hero-card memory">
+                <h3 class="hero-name">Мамкин Андрей Сергеевич</h3>
+                <div class="hero-rank">Капитан, родился 3 мая 1996 г. в Пугачёве</div>
+                <p class="hero-desc">Командир вертолёта-инструктор, лётчик Ка-52М, позывной «Саратов». Дважды награждён орденом Мужества. Погиб в 2026 году в зоне СВО; звание Героя России присвоено посмертно.</p>
+                <span class="badge badge-memory">Посмертно</span>
+            </article>
+        </section>
+
+        <section class="program-section">
+            <h2>Наши герои</h2>
+            <p>Региональная программа для участников СВО: обучение и работа в органах власти Саратовской области.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Саратовская область · Слава героям!</p>
+    </footer>
+</body>
+</html>
